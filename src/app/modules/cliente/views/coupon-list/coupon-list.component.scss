@@ -1,0 +1,115 @@
+.coupon-card {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden; // Para recortar si el hex sobresale
+  background-color: #f4f1e3; // Color de fondo global (similar a la imagen)
+  min-height: 180px; // Ajusta según tu preferencia
+
+  // Bordes, sombras, etc.
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// IZQUIERDA: Forma hexagonal
+.coupon-left-shape {
+  width: 160px;           // Ancho de la “columna” hex
+  min-width: 140px;       // Evitar que se colapse
+  color: #333;
+  background-color: #fde09c; // Color amarillo pastel (ajusta para parecerse a la imagen)
+  padding: 1rem;
+  clip-path: polygon(
+    0% 0%,
+    80% 0%,
+    100% 50%,
+    80% 100%,
+    0% 100%,
+    0% 0%
+  );
+
+  &:hover{
+    background-color: rgb(203, 174, 104); // Color amarillo pastel (ajusta para parecerse a la imagen)
+    width: 180px;           // Ancho de la “columna” hex
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  // Este clip-path produce un hex en la parte izquierda
+  // Ajusta los porcentajes si necesitas una forma más parecida
+}
+
+// 10% 0%,
+// 100% 0%,
+// 100% 100%,
+// 25% 100%,
+// 0% 50%,
+// 25% 0%,
+
+// 0% 0%,
+// 80% 0%,
+// 100% 50%,
+// 80% 100%,
+// 0% 100%,
+// 0% 0%
+
+.acquire {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.points {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0.5rem 0;
+}
+
+.points small {
+  font-size: 0.75rem;
+}
+
+.brand {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+
+// DERECHA: contenido principal
+.coupon-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap; // Para que texto e imagen puedan adaptarse en pantallas pequeñas
+  background-color: #f4f1e3; // Color similar
+  padding: 1rem;
+}
+
+.coupon-text {
+  flex: 1 1 auto;
+  margin-right: 1rem;
+
+  .title {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .offer-details {
+    background-color: #eeeeee;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .price-extra {
+    font-weight: 600;
+    margin: 0.25rem 0;
+  }
+}
+
+.coupon-image {
+  flex: 0 0 auto;
+  width: 250px; // Ajusta ancho de la imagen
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,154 @@
+<div class="container mt-5 user-management">
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="page-title">Gestión de Usuarios</h2>
+    </div>
+    <div class="col-3 text-end">
+      <button class="btn btn-success" (click)="onCreateUser()">
+        <i class="bi bi-person-plus"></i> Crear Usuario
+      </button>
+    </div>
+  </div>
+
+  <!-- Mensajes de error -->
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <!-- Tarjeta que contiene la tabla -->
+  <div class="card table-card" *ngIf="users.length > 0">
+    <div class="card-header">
+      <h5 class="m-0">Lista de Usuarios</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>DNI</th>
+            <th>Teléfono</th>
+            <th>Fecha Nac.</th>
+            <th>Domicilio</th>
+            <th>Rol</th>
+            <th>Puntos</th>
+            <th>Nivel</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of users">
+            <td>{{ u.id }}</td>
+            <td>{{ u.fullName }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.dni || '-' }}</td>
+            <td>{{ u.phone || '-' }}</td>
+            <td>{{ u.dateOfBirth ? (u.dateOfBirth | date:'dd/MM/yyyy') : '-' }}</td>
+            <td>{{ u.address || '-' }}</td>
+            <td>
+              <h3>
+                <span class="badge rounded-pill" [ngClass]="{
+                'bg-secondary': u.role === 'client',
+                'bg-info': u.role === 'receptionist',
+                'bg-primary': u.role === 'admin'
+              }">
+              <div *ngIf="u.role === 'client'">CLIENTE</div>
+              <div *ngIf="u.role === 'receptionist'">RECEPCIONISTA</div>
+              <div *ngIf="u.role === 'admin'">ADMINISTRADOR</div>
+
+                </span>
+              </h3>
+            </td>
+            <td>{{ u.points }}</td>
+            <td>{{ u.level }}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-warning" (click)="onEditUser(u)">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <!-- <button class="btn btn-sm btn-danger ms-2" (click)="onResetPoints(u.id)">
+                <i class="bi bi-bootstrap-reboot"></i> Reset Pts
+              </button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Si no hay usuarios -->
+  <div *ngIf="!users.length">
+    <p>No hay usuarios disponibles.</p>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" [ngClass]="{'show d-block': showModal}" style="background-color: rgba(0,0,0,0.5);"
+  role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ selectedUser.id ? 'Editar Usuario' : 'Crear Usuario' }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nombre Completo</label>
+            <input class="form-control" [(ngModel)]="selectedUser.fullName" name="fullName" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="selectedUser.email" name="email" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">DNI</label>
+            <input class="form-control" [(ngModel)]="selectedUser.dni" name="dni" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Teléfono</label>
+            <input class="form-control" [(ngModel)]="selectedUser.phone" name="phone" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Fecha Nacimiento</label>
+            <input type="date" class="form-control" [(ngModel)]="selectedUser.dateOfBirth" name="dateOfBirth" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Domicilio</label>
+            <input class="form-control" [(ngModel)]="selectedUser.address" name="address" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Rol</label>
+            <select class="form-select" [(ngModel)]="selectedUser.role" name="role">
+              <option value="client">Cliente</option>
+              <option value="receptionist">Recepcionista</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Puntos</label>
+            <input type="number" class="form-control" [(ngModel)]="selectedUser.points" name="points" />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" (click)="closeModal()">
+          Cerrar
+        </button>
+        <button class="btn btn-primary" type="button" (click)="onSubmitUser()">
+          <i class="bi" [ngClass]="selectedUser.id ? 'bi-check-lg' : 'bi-plus-lg'"></i>
+          {{ selectedUser.id ? 'Actualizar' : 'Crear' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

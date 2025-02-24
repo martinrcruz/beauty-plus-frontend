@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h2>Listado de Cupones</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let coupon of coupons">
+      <div class="card">
+        <img src="/assets/images/coupons/imagen_coupon.jpg" alt="cupón">
+        <div class="card-body">
+          <h5 class="card-title">{{ coupon.title }}</h5>
+          <p class="card-text">Costo en Puntos: {{ coupon.costInPoints }}</p>
+          <button class="btn btn-primary" (click)="onRedeem(coupon.id)">Canjear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

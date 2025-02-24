@@ -1,0 +1,114 @@
+<div class="container mt-5">
+  <!-- Fila superior con estadísticas / datos básicos (ejemplo) -->
+  <div class="row my-4">
+    <h1 class="text-center pb-4">Indicadores</h1>
+    <!-- Tarjeta: Compras Registradas Hoy -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Compras de Hoy</h2>
+          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+            {{ receptionistData.dailyPurchases || 0 }}
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Cupones Aplicados Hoy -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Cupones Aplicados Hoy</h2>
+          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+            {{ receptionistData.dailyCouponsUsed || 0 }}
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Totales del Día (ejemplo) -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Total € / Día</h2>
+          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+            {{ receptionistData.dailyTotalEur || 0 }}€
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de accesos rápidos para Recepcionista -->
+  <div class="row">
+    <h1 class="text-center pb-4">Navegación</h1>
+
+    <!-- Tarjeta: Registrar Compras -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link" 
+        routerLink="/receptionist/purchase"
+      >
+        <img
+          src="assets/icons/sale.png"
+          class="card-img-top p-3"
+          alt="Registrar Compras"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Registrar Compras</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Aplicar Cupón -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link" 
+        routerLink="/receptionist/coupon-usage"
+      >
+        <img
+          src="assets/icons/coupon.png"
+          class="card-img-top p-3"
+          alt="Aplicar Cupón"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Aplicar Cupón</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Historial de Ventas -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link"
+        routerLink="/receptionist/purchases-history"
+      >
+        <img
+          src="assets/icons/reports.png"
+          class="card-img-top p-3"
+          alt="Historial de Ventas"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Historial de Ventas</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Perfil (opcional) -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link"
+        routerLink="/receptionist/profile"
+      >
+        <img
+          src="assets/icons/user-profile.png"
+          class="card-img-top p-3"
+          alt="Perfil"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Perfil</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+<div class="container mt-5 my-coupons">
+  <h2 class="page-title">Mis Cupones</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <!-- Si hay cupones canjeados -->
+  <div class="card table-card" *ngIf="redemptions.length > 0">
+    <div class="card-header">
+      <h5 class="m-0">Historial de Cupones Canjeados</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>QR</th>
+            <th>Código Cupón</th>
+            <th>Título</th>
+            <th class="text-center">Estado</th>
+            <th>Fecha de Canje</th>
+            <th>Fecha de Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of redemptions" [class.clickable]="r.status === 'pending'" (click)="viewCouponDetail(r)">
+            <td>
+              <!-- Miniatura del QR en 64x64, si r.qrCodeImage existe -->
+              <img *ngIf="r.qrCodeImage" [src]="r.qrCodeImage" alt="QR"
+                style="width:64px; height:64px; object-fit: cover;" />
+            </td>
+            <td>{{ r.redeemCode }}</td>
+            <td>{{ r.Coupon?.title }}</td>
+            <td class="text-center">
+              <h3>
+                <span class="badge rounded-pill" [ngClass]="{
+                    'bg-secondary': r.status === 'used',
+                    'bg-success': r.status === 'pending',
+                    'bg-danger': r.status === 'expired'
+                  }">
+                  <div *ngIf="r.status === 'pending'">DISPONIBLE</div>
+                  <div *ngIf="r.status === 'used'">CANJEADO</div>
+                  <div *ngIf="r.status === 'expired'">EXPIRADO</div>
+                </span>
+              </h3>
+            </td>
+            <td>
+              <!-- Fecha en la que se adquirió el cupón (canjeado) -->
+              {{ r.createdAt | date:'dd/MM/yyyy HH:mm' }}
+            </td>
+            <td>
+              <!-- Fecha de uso (solo si está 'used'), sino '-' -->
+              <span *ngIf="r.status === 'used'">
+                {{ r.usedAt ? (r.usedAt | date:'dd/MM/yyyy HH:mm') : '-' }}
+              </span>
+              <span *ngIf="r.status !== 'used'">-</span>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Si no hay redemptions -->
+  <div *ngIf="!redemptions.length">
+    <p>No has canjeado ningún cupón.</p>
+  </div>
+</div>
+
+<!-- Modal con detalle del cupón -->
+<div class="modal fade" [ngClass]="{'show d-block': showDetailModal}" style="background-color: rgba(0,0,0,0.5);"
+  tabindex="-1" *ngIf="showDetailModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header text-white">
+        <h5 class="modal-title" style="color:black">Detalle del Cupón</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeDetailModal()"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedRedemption">
+        <!-- En lugar de "adquirir" se muestra la imagen del QR a la izquierda -->
+        <div class="coupon-card d-flex">
+          <!-- IZQUIERDA: Muestra QR code en grande -->
+          <div class="coupon-left-shape d-flex flex-column justify-content-center align-items-center text-center"
+            style="cursor: default;">
+            <span *ngIf="selectedRedemption.qrCodeImage">
+              <img [src]="selectedRedemption.qrCodeImage" alt="QR Cupón"
+                style="width: 120px; height:120px; object-fit: contain;" />
+            </span>
+          </div>
+
+          <!-- DERECHA: Contenido (cupón) -->
+          <div class="coupon-content d-flex flex-column p-3 flex-grow-1">
+            <p class="mb-1">
+              <strong>{{ selectedRedemption.Coupon.productType || '' }}: </strong>
+              {{ selectedRedemption.Coupon.productDescription || '' }}
+            </p>
+            <div class="coupon-text mb-3">
+              <div class="offer-details mb-2">
+                <p class="title mb-1">
+                  <strong>{{ selectedRedemption.Coupon.title }}</strong>
+                  <span *ngIf="selectedRedemption.Coupon.shortDescription">:
+                    {{ selectedRedemption.Coupon.shortDescription }}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="price-extra mb-2">
+              <strong style="font-size: 26px !important;">
+                {{ selectedRedemption.Coupon.costInPoints }}
+              </strong> ptos.
+              <strong style="font-size: 26px !important;" class="float-end">Beauty Plus</strong>
+            </div>
+            <!-- Estado actual + fecha canjeado / usado -->
+            <p>
+              Estado: <strong>{{ selectedRedemption.status?.toUpperCase() }}</strong>
+            </p>
+            <p>
+              Fecha Canje:
+              <span>{{ selectedRedemption.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+            </p>
+            <p *ngIf="selectedRedemption.status === 'used'">
+              Fecha Uso:
+              <span>{{ selectedRedemption.usedAt ? (selectedRedemption.usedAt | date:'dd/MM/yyyy HH:mm') : '-' }}</span>
+            </p>
+          </div>
+
+          <!-- Imagen del cupón (opcional) -->
+          <div class="coupon-image d-none d-md-flex">
+            <img [src]="selectedRedemption.Coupon.couponImage" alt="cupón" />
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeDetailModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

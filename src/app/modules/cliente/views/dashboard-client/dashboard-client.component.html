@@ -1,0 +1,140 @@
+<div class="container mt-3">
+  <div class="row my-4">
+    <h1 class="text-center pb-4">Indicadores</h1>
+    <!-- Tarjeta de Puntos -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <!-- Puedes poner un icono/imagen decorativa en la parte superior -->
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Puntos Disponibles</h2>
+          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 30px !important">{{ userData.points }} Pts</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de Nivel -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Tu Nivel</h2>
+          <!-- Ejemplo de icono diferenciado por nivel -->
+          <img
+            *ngIf="userData.level === 'Blanco'"
+            src="assets/icons/white-level.png"
+            alt="Nivel Blanco"
+            class="icon-level mx-auto"
+            style="width: 120px !important;"
+          />
+          <img
+            *ngIf="userData.level === 'Silver'"
+            src="assets/icons/silver-level.png"
+            alt="Nivel Silver"
+            class="icon-level mx-auto"
+            style="width: 120px !important;"
+
+          />
+          <img
+            *ngIf="userData.level === 'Gold'"
+            src="assets/icons/gold-level.png"
+            alt="Nivel Gold"
+            class="icon-level mx-auto"
+            style="width: 120px !important;"
+                      />
+          <img
+            *ngIf="userData.level === 'Platinum'"
+            src="assets/icons/platinum-level.png"
+            alt="Nivel Platinum"
+            class="icon-level mx-auto"
+            style="width: 120px !important;"
+                      />
+
+          <p class="card-text fs-5 mt-2"> {{ userData.level }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de Cupones Disponibles -->
+    <div class="col-md-4 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Cupones Disponibles</h2>
+          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 40px !important">{{ userData.availableCoupons || 0 }}</h1>
+          <!-- “availableCoupons” es un campo que tú obtienes de tu backend/service -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de enlaces a Perfil, Cupones Disponibles, Cupones Destacados, Historial -->
+  <div class="row">
+    <h1 class="text-center pb-4">Navegación</h1>
+    <!-- Tarjeta: Perfil -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link" 
+        routerLink="/cliente/profile"
+      >
+        <img
+          src="assets/icons/user-profile.png"
+          class="card-img-top p-3"
+          alt="Perfil"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Perfil</h5>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tarjeta: Cupones Disponibles -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link" 
+        routerLink="/cliente/coupons"
+      >
+        <img
+          src="assets/icons/coupon.png"
+          class="card-img-top p-3"
+          alt="Cupones"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Cupones Disponibles</h5>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tarjeta: Cupones Destacados -->
+    <div class="col-md-2 mb-3">
+      <div
+        class="card h-100 text-center card-link" 
+        routerLink="/cliente/highlighted"
+      >
+        <img
+          src="assets/icons/highlighted.png"
+          class="card-img-top p-3"
+          alt="Cupones Destacados"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Cupones Destacados</h5>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tarjeta: Historial de Cupones -->
+    <div class="col-md-2 mb-3">
+      <div 
+        class="card h-100 text-center card-link" 
+        routerLink="/cliente/history"
+      >
+        <img
+          src="assets/icons/history.png"
+          class="card-img-top p-3"
+          alt="Historial"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Historial de Cupones</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

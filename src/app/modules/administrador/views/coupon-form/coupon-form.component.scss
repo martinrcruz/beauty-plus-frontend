@@ -1,0 +1,30 @@
+.coupon-form {
+  .page-title {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .form-card {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .form-label {
+      margin-bottom: 0.25rem;
+    }
+
+    .btn {
+      border-radius: 0.3rem;
+      &:focus {
+        box-shadow: none;
+      }
+      i {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}

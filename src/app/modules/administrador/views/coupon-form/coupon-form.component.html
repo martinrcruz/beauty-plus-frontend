@@ -1,0 +1,200 @@
+<div class="container mt-5 coupon-form">
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="page-title">
+        {{ couponId ? 'Editar Cupón' : 'Crear Cupón' }}
+      </h2>
+    </div>
+  </div>
+
+  <div class="alert alert-success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div class="card form-card">
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label for="title" class="form-label fw-bold">Título</label>
+          <input 
+            id="title" 
+            class="form-control" 
+            [(ngModel)]="coupon.title" 
+            name="title"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Imagen del Cupón</label>
+          <!-- Botón estilizado y input oculto -->
+          <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-primary me-3" (click)="onSelectImage()">Adjuntar Imagen</button>
+            <input 
+              #fileInput
+              type="file" 
+              accept="image/*" 
+              class="d-none" 
+              (change)="onFileSelected($event)"
+            />
+            <!-- Mostrar nombre de archivo si selectedFile existe -->
+            <span *ngIf="selectedFileName">{{ selectedFileName }}</span>
+          </div>
+          <!-- Previsualización si la imagen local ya está en coupon.imagePreview o si coupon.imageURL -->
+          <div *ngIf="imagePreview" class="mt-2">
+            <img [src]="imagePreview" alt="Previsualización" style="max-width: 200px; object-fit: cover;" />
+          </div>
+          <!-- O si no hay imagen local, pero hay una en la BD -->
+          <div *ngIf="!imagePreview && coupon.couponImage" class="mt-2">
+            <img [src]="coupon.couponImage" alt="Imagen del Cupón" style="max-width: 200px; object-fit: cover;" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="costInPoints" class="form-label fw-bold">Costo en Puntos</label>
+          <input 
+            id="costInPoints" 
+            type="number" 
+            class="form-control" 
+            [(ngModel)]="coupon.costInPoints" 
+            name="costInPoints"
+          />
+        </div>
+
+        <h5 class="mt-4 mb-3">Descuentos por Nivel</h5>
+        <div class="row gx-2">
+          <div class="col-sm-6 col-md-3 mb-3">
+            <label class="form-label fw-bold">Desc. Blanco</label>
+            <input 
+              class="form-control" 
+              type="number" 
+              [(ngModel)]="coupon.discountBlanco" 
+              name="discountBlanco"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-3">
+            <label class="form-label fw-bold">Desc. Silver</label>
+            <input 
+              class="form-control" 
+              type="number" 
+              [(ngModel)]="coupon.discountSilver" 
+              name="discountSilver"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-3">
+            <label class="form-label fw-bold">Desc. Gold</label>
+            <input 
+              class="form-control" 
+              type="number" 
+              [(ngModel)]="coupon.discountGold" 
+              name="discountGold"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-3">
+            <label class="form-label fw-bold">Desc. Platinum</label>
+            <input 
+              class="form-control" 
+              type="number" 
+              [(ngModel)]="coupon.discountPlatinum" 
+              name="discountPlatinum"
+            />
+          </div>
+        </div>
+
+        <!-- Sección de Detalles del Producto -->
+        <h5 class="mt-4 mb-3">Detalles del Producto</h5>
+        <div class="mb-3">
+          <label for="productType" class="form-label fw-bold">Tipo de Producto</label>
+          <input 
+            id="productType" 
+            class="form-control" 
+            [(ngModel)]="coupon.productType" 
+            name="productType"
+            placeholder="Ej.: Cosmético, Tratamiento, etc."
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="productDescription" class="form-label fw-bold">Descripción del Producto</label>
+          <textarea 
+            id="productDescription" 
+            class="form-control" 
+            rows="3"
+            [(ngModel)]="coupon.productDescription" 
+            name="productDescription"
+            placeholder="Descripción breve del producto..."
+          ></textarea>
+        </div>
+
+        <div class="row gx-2">
+          <div class="col-sm-6 mb-3">
+            <label for="invoiceNumber" class="form-label fw-bold">Nro Factura</label>
+            <input 
+              id="invoiceNumber" 
+              class="form-control" 
+              [(ngModel)]="coupon.invoiceNumber" 
+              name="invoiceNumber"
+              placeholder="Ej.: 12345"
+            />
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label for="redemptionDate" class="form-label fw-bold">Fecha de Canje</label>
+            <input 
+              id="redemptionDate" 
+              type="date" 
+              class="form-control" 
+              [(ngModel)]="coupon.redemptionDate" 
+              name="redemptionDate"
+            />
+          </div>
+        </div>
+
+        <div class="form-check mb-3">
+          <input 
+            id="isHighlighted" 
+            class="form-check-input" 
+            type="checkbox" 
+            [(ngModel)]="coupon.isHighlighted" 
+            name="isHighlighted"
+          />
+          <label class="form-check-label fw-bold" for="isHighlighted">
+            ¿Destacado?
+          </label>
+        </div>
+
+        <div class="form-check mb-4">
+          <input 
+            id="isActive" 
+            class="form-check-input" 
+            type="checkbox" 
+            [(ngModel)]="coupon.isActive" 
+            name="isActive"
+          />
+          <label class="form-check-label fw-bold" for="isActive">
+            ¿Activo?
+          </label>
+        </div>
+
+        <div class="d-flex">
+          <button 
+            class="btn btn-primary me-3" 
+            type="button" 
+            (click)="onSubmit()"
+          >
+            <i class="bi" [ngClass]="couponId ? 'bi-check-lg' : 'bi-plus-lg'"></i>
+            {{ couponId ? 'Actualizar' : 'Crear' }}
+          </button>
+          <button 
+            class="btn btn-secondary" 
+            type="button" 
+            (click)="onBack()"
+          >
+            <i class="bi bi-arrow-left"></i> Volver
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

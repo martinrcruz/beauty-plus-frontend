@@ -1,0 +1,48 @@
+.coupon-management {
+  .page-title {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 22px !important;
+
+  }
+
+  .table-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .card-header {
+      background-color: #e0d4bb;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      h5 {
+        font-size: 18px !important;
+        color: #593d01;
+      }
+    }
+
+    .table {
+      margin-bottom: 0;
+      thead {
+        th {
+          font-weight: 600;
+          text-transform: uppercase;
+          background-color: #f8f1e1 !important;
+
+          color: #495057;
+        }
+      }
+      tbody tr:hover {
+        background-color: #f2f2f2; // sutil hover
+      }
+    }
+  }
+
+  .btn {
+    border-radius: 0.3rem;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,162 @@
+<!-- PRIMERA FILA: Teléfono, email y WhatsApp -->
+<div class="header-top container-fluid bg-light text-dark">
+  <div class="row py-2 px-3">
+    <!-- Teléfono (columna izquierda) -->
+    <div class="col-md-4 text-start">
+      <i class="bi bi-telephone-fill"></i>
+      Tel: +34 680 367 991
+    </div>
+    <!-- Email (columna central) -->
+    <div class="col-md-4 text-center">
+      <i class="bi bi-envelope-fill"></i>
+      Email: info@drarielramiez.com
+    </div>
+    <!-- WhatsApp (columna derecha) -->
+    <div class="col-md-4 text-end">
+      <i class="bi bi-whatsapp"></i>
+      WhatsApp: +34 680 367 991
+    </div>
+  </div>
+</div>
+
+<!-- SEGUNDA FILA: Logo, Saludo/Puntos, Botón Cerrar Sesión -->
+<div class="header-middle container my-2 pt-3 pb-3">
+  <div class="row align-items-center">
+    <!-- Logo (columna izquierda) -->
+    <div class="col-md-4">
+      <h2 class="m-0">BEAUTY.plus</h2>
+    </div>
+    <!-- Mensaje de Usuario (columna central) -->
+    <div class="col-md-4 text-center">
+      Hola, <strong style="font-size: 18px;">{{ userFullName }}.</strong> Tienes <strong style="font-size: 18px;">{{ userPoints }}</strong> Pts.
+    </div>
+    <!-- Botón Cerrar Sesión (columna derecha) -->
+    <div class="col-md-4 text-end">
+      <button class="btn logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+                Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TERCERA FILA: Barra de navegación según rol -->
+<div class="header-nav container-fluid p-0">
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container-fluid">
+      <!-- Si quisieras un link general, puedes dejarlo vacío o quitarlo -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <!-- MOSTRAR OPCIONES SEGÚN EL ROL DEL USUARIO -->
+
+          <!-- ROL CLIENTE -->
+          <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/dashboard"
+              >Dashboard</a
+            >
+          </li>
+          <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/how-it-works"
+              >Puntos y Nivel</a
+            >
+          </li>
+          <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/advantages"
+              >Ventajas</a
+            >
+          </li>
+          <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/coupons"
+              >Lista de Cupones</a
+            >
+          </li>
+            <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/history"
+              >Mis Cupones</a
+            >
+          </li>
+          <li *ngIf="userRole === 'client'" class="nav-item">
+            <a class="nav-link" routerLink="/cliente/profile">Perfil</a>
+          </li>
+
+          <!-- ROL RECEPTIONIST -->
+          <li *ngIf="userRole === 'receptionist'" class="nav-item">
+            <a class="nav-link" routerLink="/receptionist/dashboard"
+              >Dashboard</a
+            >
+
+          <li *ngIf="userRole === 'receptionist'" class="nav-item">
+            <a class="nav-link" routerLink="/receptionist/purchase"
+              >Registrar Compras</a
+            >
+          </li>
+          <li *ngIf="userRole === 'receptionist'" class="nav-item">
+            <a class="nav-link" routerLink="/receptionist/coupon-usage"
+              >Aplicar Cupón</a
+            >
+          </li>
+          <li *ngIf="userRole === 'receptionist'" class="nav-item">
+            <a class="nav-link" routerLink="/receptionist/profile">Perfil</a>
+          </li>
+
+          <!-- ROL ADMIN -->
+          <li *ngIf="userRole === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin/dashboard"
+              >Dashboard</a
+            >
+          <li *ngIf="userRole === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin/coupons"
+              >Gestión de Cupones</a
+            >
+          </li>
+          <li *ngIf="userRole === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin/users"
+              >Gestión de Usuarios</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Contenido de cada módulo se renderiza aquí -->
+<div class="layout-content" style="padding-bottom: 6%;">
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- Barra Inferior (Footer) -->
+<div class="footer-bar container-fluid bg-dark text-white py-3">
+  <div class="row align-items-center">
+    <!-- Columna izquierda: Copyright -->
+    <div class="col-md-4 text-start">
+      <small>© 2025 BEAUTY.plus. Todos los derechos reservados.</small>
+    </div>
+    <!-- Columna central: Información de contacto -->
+    <div class="col-md-4 text-center">
+      <small>Contacto: info@beautyplus.com</small>
+    </div>
+    <!-- Columna derecha: Redes Sociales -->
+    <div class="col-md-4 text-end">
+      <small>
+        Síguenos: 
+        <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-2"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+      </small>
+    </div>
+  </div>
+</div>

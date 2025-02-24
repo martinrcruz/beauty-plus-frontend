@@ -1,0 +1,91 @@
+<div class="container mt-5">
+  <!-- Sección de Cupones Destacados -->
+  <h2>Cupones Destacados</h2>
+  <div *ngIf="highlightedError" class="alert alert-danger">{{ highlightedError }}</div>
+  
+  <div class="row" *ngIf="highlightedCoupons.length > 0">
+    <div class="col-12 mb-3" *ngFor="let c of highlightedCoupons">
+      <div class="coupon-card d-flex">
+        <!-- IZQUIERDA: Forma hexagonal -->
+        <div class="coupon-left-shape d-flex flex-column justify-content-center align-items-center text-center"
+          (click)="onRedeem(c.id, true)">
+          <span class="acquire">ADQUIRIR</span>
+          <span class="points">{{ c.finalCostInPoints || c.costInPoints }} <small>ptos.</small></span>
+          <span class="brand">Beauty Plus</span>
+        </div>
+
+        <!-- DERECHA: Contenido principal del cupón -->
+        <div class="coupon-content d-flex flex-column p-3">
+          <p class="mb-1">
+            <strong>{{ c.productType || '' }}: </strong> 
+            {{ c.productDescription || '' }}
+          </p>
+          <div class="coupon-text mb-3">
+            <div class="offer-details mb-2">
+              <p class="title mb-1"><strong>{{ c.title }}</strong>
+                <span *ngIf="c.shortDescription">: {{ c.shortDescription }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="price-extra mb-2">
+            <strong style="font-size: 26px !important;">{{ c.finalCostInPoints || c.costInPoints }}</strong> ptos.
+            <strong style="font-size: 26px !important;" class="float-end">Beauty Plus</strong>
+          </div>
+        </div>
+        <div class="coupon-image d-none d-md-flex">
+          <img [src]="'/assets/images/coupons/imagen_coupon.jpg'" alt="cupón" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!highlightedCoupons.length">
+    <p>No hay cupones destacados disponibles.</p>
+  </div>
+</div>
+
+<hr class="my-5">
+
+<div class="container mt-5">
+  <!-- Sección de Cupones Disponibles (Normales) -->
+  <h2>Cupones Disponibles</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div class="row" *ngIf="coupons.length > 0">
+    <div class="col-12 mb-3" *ngFor="let c of coupons">
+      <div class="coupon-card d-flex">
+        <!-- IZQUIERDA: Forma hexagonal -->
+        <div class="coupon-left-shape d-flex flex-column justify-content-center align-items-center text-center"
+          (click)="onRedeem(c.id)">
+          <span class="acquire">ADQUIRIR</span>
+          <span class="points">{{ c.finalCostInPoints || c.costInPoints }} <small>ptos.</small></span>
+          <span class="brand">Beauty Plus</span>
+        </div>
+
+        <!-- DERECHA: Contenido principal del cupón -->
+        <div class="coupon-content d-flex flex-column p-3">
+          <p class="mb-1">
+            <strong>{{ c.productType || '' }}: </strong> 
+            {{ c.productDescription || '' }}
+          </p>
+          <div class="coupon-text mb-3">
+            <div class="offer-details mb-2">
+              <p class="title mb-1"><strong>{{ c.title }}</strong>
+                <span *ngIf="c.shortDescription">: {{ c.shortDescription }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="price-extra mb-2">
+            <strong style="font-size: 26px !important;">{{ c.finalCostInPoints || c.costInPoints }}</strong> ptos.
+            <strong style="font-size: 26px !important;" class="float-end">Beauty Plus</strong>
+          </div>
+        </div>
+        <div class="coupon-image d-none d-md-flex">
+          <img [src]="c.couponImage" alt="cupón" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!coupons.length">
+    <p>No hay cupones disponibles.</p>
+  </div>
+</div>

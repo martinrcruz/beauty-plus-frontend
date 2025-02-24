@@ -1,0 +1,71 @@
+<div class="container mt-5 coupon-management">
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="page-title">Gestión de Cupones</h2>
+    </div>
+    <div class="col-2 text-end">
+      <button class="btn btn-success" (click)="onCreateCoupon()">
+        <i class="bi bi-plus-lg"></i> Crear Cupón
+      </button>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="card table-card" *ngIf="coupons.length > 0">
+    <div class="card-header">
+      <h5 class="m-0">Lista de Cupones</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Imagen</th> <!-- Nueva columna miniatura -->
+            <th>Título</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Destacado</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of coupons">
+            <td>{{ c.id }}</td>
+            <!-- Miniatura: c.imageURL o c.image si guardaste la ruta en "image" -->
+            <td>
+              <img *ngIf="c.couponImage" [src]="c.couponImage" style="width:64px; height:64px; object-fit:cover;" />
+              <!-- O si tu backend retorna c.image en disco: [src]="c.image" -->
+            </td>
+            <td>{{ c.title }}</td>
+            <td class="text-center">
+              <h4>
+                <span class="badge rounded-pill" [ngClass]="c.isActive ? 'bg-success' : 'bg-secondary'">
+                  {{ c.isActive ? 'ACTIVO' : 'INACTIVO' }}
+                </span>
+              </h4>
+            </td>
+            <td class="text-center">
+              <h4>
+                <span class="badge rounded-pill" [ngClass]="c.isHighlighted ? 'bg-primary' : 'bg-secondary'">
+                  {{ c.isHighlighted ? 'SI' : 'NO' }}
+                </span>
+              </h4>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-warning" (click)="onEditCoupon(c.id)">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button class="btn btn-sm btn-danger ms-2" (click)="onDeleteCoupon(c.id)">
+                <i class="bi bi-trash"></i> Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="!coupons.length">
+    <p>No hay cupones disponibles.</p>
+  </div>
+</div>

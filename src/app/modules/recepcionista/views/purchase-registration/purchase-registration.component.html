@@ -1,0 +1,79 @@
+<div class="container mt-5 purchase-registration">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h3 class="m-0">Registrar Compra / Asignar Puntos</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <form>
+        <div class="mb-3">
+          <label for="dni" class="form-label fw-bold">DNI del Cliente:</label>
+          <input 
+            type="text" 
+            id="dni" 
+            class="form-control" 
+            [(ngModel)]="dni" 
+            name="dni"
+            placeholder="Ingresa el DNI"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="amountInEuros" class="form-label fw-bold">Compra en Euros:</label>
+          <input 
+            type="number" 
+            id="amountInEuros" 
+            step="0.01"
+            class="form-control" 
+            [(ngModel)]="amountInEuros" 
+            name="amountInEuros"
+            placeholder="Ej.: 50.00"
+          />
+        </div>
+        <!-- Nuevos campos -->
+        <div class="mb-3">
+          <label for="purchaseDate" class="form-label fw-bold">Fecha de Compra:</label>
+          <input 
+            type="date" 
+            id="purchaseDate" 
+            class="form-control" 
+            [(ngModel)]="purchaseDate" 
+            name="purchaseDate"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="invoiceNumber" class="form-label fw-bold">Número de Factura/Folio:</label>
+          <input 
+            type="text" 
+            id="invoiceNumber" 
+            class="form-control" 
+            [(ngModel)]="invoiceNumber" 
+            name="invoiceNumber"
+            placeholder="Ej.: 123456"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="observation" class="form-label fw-bold">Observación:</label>
+          <textarea 
+            id="observation" 
+            class="form-control" 
+            rows="3"
+            [(ngModel)]="observation" 
+            name="observation"
+            placeholder="Observaciones de la compra..."
+          ></textarea>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" (click)="onRegisterPurchase()">
+            <i class="bi bi-check-circle"></i> Registrar Compra
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

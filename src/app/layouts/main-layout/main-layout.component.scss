@@ -1,0 +1,84 @@
+.header-top {
+  // El contenedor ya tiene .bg-dark y .text-white, por lo que aquí podrías personalizar
+  font-size: 0.9rem;
+  background-color: #eae0cb !important;
+}
+
+.header-middle {
+  .row {
+    // Ajustes para alinear verticalmente
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+  }
+}
+
+.custom-navbar {
+  background-color: #bcaa83;
+}
+
+.logout-btn {
+  background-color: #bcaa83;
+  color:white;
+  border: none;
+  &:hover {
+    background-color: #d5c49e;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.header-nav {
+  // TERCERA FILA: la navbar en sí
+  .navbar {
+    box-shadow: 0 2px 5px rgba(#000, 0.2);
+
+    // Aplica justificación al contenedor que agrupa las opciones del menú:
+    .navbar-collapse {
+      display: flex;
+      justify-content: center; // Centra horizontalmente los nav-items
+    }
+
+    .nav-link {
+      color: #fff !important;
+      &:hover {
+        color: lighten(#fff, 10%) !important;
+      }
+    }
+
+    .btn-outline-light {
+      border-color: #fff;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
+// Espacio debajo de la navbar (opcional)
+.layout-content {
+  padding: 1rem 2rem;
+}
+
+
+.footer-bar {
+  background-color: #bcaa83 !important;  // Si tienes definida la variable, o usa #343a40
+  color: #fff;
+  font-size: 0.9rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000; // Asegura que se muestre sobre otros elementos
+  
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

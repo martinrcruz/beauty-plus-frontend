@@ -1,0 +1,151 @@
+<div class="container my-5">
+  <!-- Título principal -->
+  <h2 style="font-weight: 600;">Puntos y nivel</h2>
+
+  <!-- Sección de Puntos -->
+  <div class="mt-3" style="font-size: 1.1rem;">
+    <p class="mb-2">
+      Tus Puntos 
+      <span style="font-weight: 600;">Beauty Plus</span>:
+    </p>
+    <br>
+    <p style="margin-left: 1.5rem;">
+      Tienes 
+      <strong style="font-size: 1.3rem;">{{ userPoints }}</strong> 
+      ptos al día 
+      <strong>{{ dateOfCheck }}</strong>.
+      <br>
+      <br>
+      Puedes acceder a todos estos cupones de canje y disfrutar de beneficios exclusivos.
+    </p>
+    <br>
+    <!-- Enlace a cupones de canje -->
+    <p style="margin-left: 1.5rem;">
+      <a 
+        href="javascript:void(0)" 
+        style="text-decoration: underline; color: #000;"
+        (click)="goToCoupons()"
+      >
+        Ir a CUPONES DE CANJE
+      </a>
+    </p>
+    <p style="margin-left: 1.5rem; font-size: 0.9rem; color: #555;">
+      Te recordamos que por cada euro invertido en alguno de nuestros tratamientos, se obtendrá un punto.
+      Dichos puntos se irán acumulando a lo largo de todo el año.
+    </p>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Fórmula 1€ = 1BP -->
+  <div class="text-center">
+    <h3 style="font-weight: 400;">
+      1 <i class="bi bi-currency-euro"></i>
+      = 
+      1 <span style="font-weight: 600;">BP</span>
+    </h3>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Sección de Nivel -->
+  <div class="mt-4">
+    <p>
+      Tu Nivel es 
+      <strong>{{ userLevel }}</strong>
+      <br>
+      Tienes acceso <strong>{{ userLevel }}</strong> de nuestras promociones exclusivas
+    </p>
+    <p *ngIf="userLevel !== 'Platinum'">
+      Estás solo a 
+      <strong>{{ nextLevelNeeded }}</strong> 
+      puntos de subir a 
+      <strong>Nivel {{ nextLevelName }}</strong>
+    </p>
+    <p *ngIf="userLevel === 'Platinum'">
+      ¡Felicidades, ya eres <strong>Platinum</strong>! Tienes los máximos beneficios.
+    </p>
+  </div>
+
+  <!-- Escala de niveles -->
+  <div class="mt-3">
+    <h5 style="font-weight: 600;">Escala de niveles</h5>
+    <div class="d-flex flex-wrap mt-3" style="gap: 1.5rem;">
+      <!-- Nivel Blanco -->
+      <div class="text-center">
+        <div 
+          style="
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 600;
+          "
+        >
+          hasta 999€
+        </div>
+        <p class="mt-2" style="font-weight: 600;">Blanco</p>
+      </div>
+
+      <!-- Nivel Silver -->
+      <div class="text-center">
+        <div 
+          style="
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 600;
+          "
+        >
+          hasta 1999€
+        </div>
+        <p class="mt-2" style="font-weight: 600;">Silver</p>
+      </div>
+
+      <!-- Nivel Gold -->
+      <div class="text-center">
+        <div 
+          style="
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background-color: #f9c96a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 600;
+          "
+        >
+          hasta 3999€
+        </div>
+        <p class="mt-2" style="font-weight: 600;">Gold</p>
+      </div>
+
+      <!-- Nivel Platinum -->
+      <div class="text-center">
+        <div 
+          style="
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background-color: #bbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 600;
+          "
+        >
+          a partir 4000€
+        </div>
+        <p class="mt-2" style="font-weight: 600;">Platinum</p>
+      </div>
+    </div>
+  </div>
+</div>

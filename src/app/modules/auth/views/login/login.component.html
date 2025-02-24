@@ -1,0 +1,53 @@
+<!-- container-fluid para ocupar todo el ancho de la pantalla -->
+<div class="container-fluid login-container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="row login-row shadow-lg">
+
+    <!-- Columna del formulario -->
+    <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+      <h1>Bienvenido a Beauty.plus</h1>
+      <h3 class="mb-4 text-center text-md-start">Para iniciar sesión, ingresa tu correo electronico y contraseña.</h3>
+
+      <!-- Mensaje de Error -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <form>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo:</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [(ngModel)]="email"
+            name="email"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+          />
+        </div>
+
+        <button type="button" class="btn btn-success w-100" (click)="onLogin()">
+          Acceder
+        </button>
+      </form>
+    </div>
+
+    <!-- Columna de la imagen (se oculta en pantallas xs) -->
+    <div class="col-md-6 d-none d-md-block p-0">
+      <img
+        class="login-img img-fluid h-100"
+        src="/assets/images/login_image.jpg"
+        alt="Imagen de Login"
+      />
+    </div>
+  </div>
+</div>

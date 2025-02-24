@@ -1,0 +1,13 @@
+.card-link {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-body {
+  background-color: #fff7e465;
+}
