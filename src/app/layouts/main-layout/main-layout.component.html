@@ -4,27 +4,28 @@
     <!-- Teléfono (columna izquierda) -->
     <div class="col-md-4 text-start">
       <i class="bi bi-telephone-fill"></i>
-      Tel: +34 680 367 991
+      Tel: +34 680 528 560 
     </div>
     <!-- Email (columna central) -->
     <div class="col-md-4 text-center">
       <i class="bi bi-envelope-fill"></i>
-      Email: info@drarielramiez.com
+      Email: info@beautyplus.com
     </div>
     <!-- WhatsApp (columna derecha) -->
     <div class="col-md-4 text-end">
       <i class="bi bi-whatsapp"></i>
-      WhatsApp: +34 680 367 991
+      WhatsApp: +34 680 528 560 
     </div>
   </div>
 </div>
 
 <!-- SEGUNDA FILA: Logo, Saludo/Puntos, Botón Cerrar Sesión -->
-<div class="header-middle container my-2 pt-3 pb-3">
+<div class="header-middle container my-2">
   <div class="row align-items-center">
     <!-- Logo (columna izquierda) -->
     <div class="col-md-4">
-      <h2 class="m-0">BEAUTY.plus</h2>
+      <img src="assets/images/logo.png" style="width: 150px !important; margin: 0px !important; padding: 0px !important;" alt="">
+      <!-- <h2 class="m-0">BEAUTY.plus</h2> -->
     </div>
     <!-- Mensaje de Usuario (columna central) -->
     <div class="col-md-4 text-center">
@@ -124,6 +125,16 @@
           <li *ngIf="userRole === 'admin'" class="nav-item">
             <a class="nav-link" routerLink="/admin/users"
               >Gestión de Usuarios</a
+            >
+          </li>
+          <li *ngIf="userRole === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin/purchase"
+              >Registrar Compra</a
+            >
+          </li>
+          <li *ngIf="userRole === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin/coupon-usage"
+              >Canjear Cupón</a
             >
           </li>
         </ul>

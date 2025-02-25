@@ -8,7 +8,7 @@
     <!-- Sección Izquierda: Avatar -->
     <div class="col-md-3 text-center">
       <div class="avatar-container mb-3">
-        <!-- Muestra la imagen si existe, o un placeholder -->
+        <!-- Avatar -->
         <img
           [src]="avatarPreview || user.avatar || 'assets/images/placeholder.png'"
           alt="avatar"
@@ -19,7 +19,6 @@
           <span class="avatar-text">Cambiar avatar</span>
         </div>
       </div>
-
       <!-- Input oculto para subir archivo -->
       <input
         type="file"
@@ -28,7 +27,18 @@
         accept="image/*"
         class="d-none"
       />
+    
+      <!-- Mostramos el QR del usuario, si existe -->
+      <div class="mt-5">
+        <img [src]="user.qrCodeImage"
+        style="width: 120px; height:120px; object-fit: contain;" />
+        
+        <!-- <p class="text-muted mt-2" style="font-size: 0.9rem;">
+          Código QR asociado a tu DNI y Email
+        </p> -->
+      </div>
     </div>
+    
 
     <!-- Sección Derecha: Formulario -->
     <div class="col-md-9">

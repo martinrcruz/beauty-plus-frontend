@@ -7,18 +7,24 @@ import { CouponManagementComponent } from './views/coupon-management/coupon-mana
 import { CouponFormComponent } from './views/coupon-form/coupon-form.component';
 import { UserManagementComponent } from './views/user-management/user-management.component';
 import { DashboardAdminComponent } from './views/dashboard-admin/dashboard-admin.component';
+import { PurchaseRegistrationComponent } from './views/purchase-registration/purchase-registration.component';
+import { CouponUsageComponent } from './views/coupon-usage/coupon-usage.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
     CouponManagementComponent,
     CouponFormComponent,
     UserManagementComponent,
-    DashboardAdminComponent  // Se agrega aquí
+    DashboardAdminComponent,
+    PurchaseRegistrationComponent,
+    CouponUsageComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    AdministradorRoutingModule
+    AdministradorRoutingModule,
+    ZXingScannerModule
   ]
 })
 export class AdministradorModule {}

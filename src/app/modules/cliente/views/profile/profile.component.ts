@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.userService.getProfile().subscribe({
       next: (res: any) => {
+        console.log(res)
         // Asigna campos, si no existen => valores vacíos
         this.user = {
           id: res.id,
@@ -38,7 +39,9 @@ export class ProfileComponent implements OnInit {
           address: res.address || '',
           points: res.points,
           level: res.level,
-          avatar: res.avatar || '' // URL de la imagen
+          avatar: res.avatar || '',
+          qrCodeImage: res.qrCodeImage || '' 
+
         };
       },
       error: (err:any) => {

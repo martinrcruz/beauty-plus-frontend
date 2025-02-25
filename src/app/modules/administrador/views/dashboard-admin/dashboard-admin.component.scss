@@ -8,6 +8,51 @@
   }
 }
 
+
+
 .card-body {
   background-color: #fff7e465;
+}
+
+.dashboard-cards {
+  .card {
+    border-radius: 0.5rem;
+    .card-header {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .card-title {
+        font-size: 12px;
+        margin-bottom: 1rem;
+      }
+      .card-text {
+        font-size: 2rem; // Ajusta para números grandes
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.icon-level {
+  width: 75px !important; // antes 120px, achicado
+}
+
+.card-link {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  .card-img-top {
+    width: 80px !important; 
+    height: 80px !important;
+    margin: 0 auto;
+    object-fit: cover;
+    padding: 0px;
+  }
+  &:hover {
+    transform: scale(1.03);
+  }
 }

@@ -14,23 +14,47 @@
       <form>
         <div class="mb-3">
           <label for="redemptionId" class="form-label fw-bold">
-            ID de Redención:
+            Código de cupón:
           </label>
           <input
-            type="number"
+            type="text"
             id="redemptionId"
             class="form-control"
             [(ngModel)]="redemptionId"
             name="redemptionId"
-            placeholder="Ingresa el ID de redención"
+            placeholder="Ingresa el Código de cupón"
           />
+          <!-- Botón para escanear QR -->
+          <div class="text-end mt-2">
+            <button 
+              type="button" 
+              class="btn btn-secondary text-white" 
+              (click)="toggleScanner()"
+            >
+              <i class="bi bi-qr-code-scan"></i> Escanear Cupón
+            </button>
+          </div>
         </div>
         <div class="text-center">
-          <button type="button" class="btn btn-info text-white" (click)="onUseCoupon()">
+          <button type="button" class="btn btn-primary text-white" (click)="onUseCoupon()">
             <i class="bi bi-check-circle"></i> Aplicar Cupón
           </button>
         </div>
       </form>
     </div>
+  </div>
+</div>
+
+<!-- Escáner: se muestra si showScanner es true -->
+<div *ngIf="showScanner" class="scanner-overlay">
+  <div class="scanner-modal">
+    <button type="button" class="btn-close float-end" (click)="toggleScanner()"></button>
+    <h5>Escanear Código de Cupón</h5>
+    <!-- Componente zxing-scanner -->
+    <zxing-scanner 
+      (scanSuccess)="handleQrSuccess($event)"
+      [tryHarder]="true"
+      [torch]="false"
+    ></zxing-scanner>
   </div>
 </div>

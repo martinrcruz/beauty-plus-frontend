@@ -1,7 +1,7 @@
 <div class="container mt-5 purchase-registration">
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white">
-      <h3 class="m-0">Registrar Compra / Asignar Puntos</h3>
+      <h1 class="m-0">Registrar Compra / Asignar Puntos</h1>
     </div>
     <div class="card-body">
       <div *ngIf="successMessage" class="alert alert-success">
@@ -22,7 +22,14 @@
             name="dni"
             placeholder="Ingresa el DNI"
           />
+          <!-- Botón para escanear QR -->
+          <div class="text-end mt-2">
+            <button type="button" class="btn btn-secondary" style="color:white !important" (click)="toggleScanner()">
+              <i class="bi bi-qr-code-scan"></i> Escanear QR
+            </button>
+          </div>
         </div>
+
         <div class="mb-3">
           <label for="amountInEuros" class="form-label fw-bold">Compra en Euros:</label>
           <input 
@@ -35,7 +42,6 @@
             placeholder="Ej.: 50.00"
           />
         </div>
-        <!-- Nuevos campos -->
         <div class="mb-3">
           <label for="purchaseDate" class="form-label fw-bold">Fecha de Compra:</label>
           <input 
@@ -47,7 +53,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="invoiceNumber" class="form-label fw-bold">Número de Factura/Folio:</label>
+          <label for="invoiceNumber" class="form-label fw-bold">Número de Factura:</label>
           <input 
             type="text" 
             id="invoiceNumber" 
@@ -75,5 +81,21 @@
         </div>
       </form>
     </div>
+  </div>
+</div>
+
+<!-- SCANNER: Se muestra solo si showScanner es true -->
+<div *ngIf="showScanner" class="scanner-overlay">
+  <!-- Ejemplo de overlay, ajusta estilos en tu .scss -->
+  <div class="scanner-modal">
+    <button type="button" class="btn-close float-end" (click)="toggleScanner()"></button>
+    <h5>Escanear QR del Cliente</h5>
+    <!-- ZXingScanner -->
+    <zxing-scanner 
+      (scanSuccess)="handleQrSuccess($event)"
+      [tryHarder]="true"
+      [torch]="false"
+    >
+    </zxing-scanner>
   </div>
 </div>

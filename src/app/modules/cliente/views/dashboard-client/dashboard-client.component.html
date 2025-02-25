@@ -1,13 +1,16 @@
-<div class="container mt-3">
+<div class="container mt-3 dashboard-cards">
   <div class="row my-4">
     <h1 class="text-center pb-4">Indicadores</h1>
+
     <!-- Tarjeta de Puntos -->
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
-        <!-- Puedes poner un icono/imagen decorativa en la parte superior -->
-        <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Puntos Disponibles</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 30px !important">{{ userData.points }} Pts</h1>
+        <div class="card-body">
+          <h1 class="card-text">
+            {{ userData.points }}
+          </h1>
+          <h2>Puntos Disponibles</h2>
+
         </div>
       </div>
     </div>
@@ -15,40 +18,35 @@
     <!-- Tarjeta de Nivel -->
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
-        <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Tu Nivel</h2>
-          <!-- Ejemplo de icono diferenciado por nivel -->
+        <div class="card-body">
+          <h2>Tu Nivel</h2>
+
+          <!-- Ícono según nivel (reduciendo ancho a ~80px) -->
           <img
             *ngIf="userData.level === 'Blanco'"
-            src="assets/icons/white-level.png"
+            src="assets/levels/white-level.png"
             alt="Nivel Blanco"
             class="icon-level mx-auto"
-            style="width: 120px !important;"
           />
           <img
             *ngIf="userData.level === 'Silver'"
-            src="assets/icons/silver-level.png"
+            src="assets/levels/silver-level.png"
             alt="Nivel Silver"
             class="icon-level mx-auto"
-            style="width: 120px !important;"
-
           />
           <img
             *ngIf="userData.level === 'Gold'"
-            src="assets/icons/gold-level.png"
+            src="assets/levels/gold-level.png"
             alt="Nivel Gold"
             class="icon-level mx-auto"
-            style="width: 120px !important;"
-                      />
+          />
           <img
             *ngIf="userData.level === 'Platinum'"
-            src="assets/icons/platinum-level.png"
+            src="assets/levels/platinum-level.png"
             alt="Nivel Platinum"
             class="icon-level mx-auto"
-            style="width: 120px !important;"
-                      />
-
-          <p class="card-text fs-5 mt-2"> {{ userData.level }}</p>
+          />
+          
         </div>
       </div>
     </div>
@@ -56,85 +54,84 @@
     <!-- Tarjeta de Cupones Disponibles -->
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
-        <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Cupones Disponibles</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 40px !important">{{ userData.availableCoupons || 0 }}</h1>
-          <!-- “availableCoupons” es un campo que tú obtienes de tu backend/service -->
+        <div class="card-body">
+          <h1 class="card-text">
+            {{ userData.availableCoupons || 0 }}
+          </h1>
+          <h2>Cupones Disponibles</h2>
+
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Sección de enlaces a Perfil, Cupones Disponibles, Cupones Destacados, Historial -->
+  <!-- Sección de enlaces de navegación -->
   <div class="row">
     <h1 class="text-center pb-4">Navegación</h1>
-    <!-- Tarjeta: Perfil -->
+
     <div class="col-md-2 mb-3">
-      <div 
-        class="card h-100 text-center card-link" 
-        routerLink="/cliente/profile"
-      >
+      <div class="card h-100 text-center card-link" routerLink="/cliente/profile">
         <img
           src="assets/icons/user-profile.png"
-          class="card-img-top p-3"
+          class="card-img-top p-2"
           alt="Perfil"
         />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
           <h5 class="card-title">Perfil</h5>
         </div>
       </div>
     </div>
   
-    <!-- Tarjeta: Cupones Disponibles -->
     <div class="col-md-2 mb-3">
-      <div 
-        class="card h-100 text-center card-link" 
-        routerLink="/cliente/coupons"
-      >
+      <div class="card h-100 text-center card-link" routerLink="/cliente/coupons">
         <img
           src="assets/icons/coupon.png"
-          class="card-img-top p-3"
+          class="card-img-top p-2"
           alt="Cupones"
         />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
           <h5 class="card-title">Cupones Disponibles</h5>
         </div>
       </div>
     </div>
-  
-    <!-- Tarjeta: Cupones Destacados -->
+
     <div class="col-md-2 mb-3">
-      <div
-        class="card h-100 text-center card-link" 
-        routerLink="/cliente/highlighted"
-      >
+      <div class="card h-100 text-center card-link" routerLink="/cliente/history">
         <img
-          src="assets/icons/highlighted.png"
-          class="card-img-top p-3"
-          alt="Cupones Destacados"
+          src="assets/icons/history.png"
+          class="card-img-top p-2"
+          alt="Historial"
         />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Cupones Destacados</h5>
+        <div class="card-body">
+          <h5 class="card-title">Mis Cupones</h5>
         </div>
       </div>
     </div>
-  
-    <!-- Tarjeta: Historial de Cupones -->
+
     <div class="col-md-2 mb-3">
-      <div 
-        class="card h-100 text-center card-link" 
-        routerLink="/cliente/history"
-      >
+      <div class="card h-100 text-center card-link" routerLink="/cliente/how-it-works">
         <img
-          src="assets/icons/history.png"
-          class="card-img-top p-3"
-          alt="Historial"
+          src="assets/icons/level.png"
+          class="card-img-top p-2"
+          alt="Puntos y Nivel"
         />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Historial de Cupones</h5>
+        <div class="card-body">
+          <h5 class="card-title">Puntos y Nivel</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <div class="card h-100 text-center card-link" routerLink="/cliente/advantages">
+        <img
+          src="assets/icons/benefits.png"
+          class="card-img-top p-2"
+          alt="Ventajas"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Ventajas</h5>
         </div>
       </div>
     </div>
   </div>
-  
 </div>

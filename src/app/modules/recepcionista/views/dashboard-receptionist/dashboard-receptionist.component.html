@@ -6,8 +6,8 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Compras de Hoy</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h2>Compras de Hoy</h2>
+          <h1 class="card-text fs-4" >
             {{ receptionistData.dailyPurchases || 0 }}
           </h1>
         </div>
@@ -18,8 +18,8 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Cupones Aplicados Hoy</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h2>Cupones Aplicados Hoy</h2>
+          <h1 class="card-text fs-4" >
             {{ receptionistData.dailyCouponsUsed || 0 }}
           </h1>
         </div>
@@ -30,8 +30,8 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Total € / Día</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h2>Total € / Día</h2>
+          <h1 class="card-text fs-4" >
             {{ receptionistData.dailyTotalEur || 0 }}€
           </h1>
         </div>
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Tarjeta: Historial de Ventas -->
-    <div class="col-md-2 mb-3">
+    <!-- <div class="col-md-2 mb-3">
       <div 
         class="card h-100 text-center card-link"
         routerLink="/receptionist/purchases-history"
@@ -92,7 +92,7 @@
           <h5 class="card-title">Historial de Ventas</h5>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Tarjeta: Perfil (opcional) -->
     <div class="col-md-2 mb-3">

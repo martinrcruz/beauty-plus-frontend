@@ -6,7 +6,6 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
-
 })
 export class LoginComponent {
   email = '';
@@ -18,20 +17,24 @@ export class LoginComponent {
   onLogin() {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (res) => {
-        //TODO: reemplazar navegacion segun rol.
-        console.log(res.user.role)
-        if(res.user.role == "admin"){
+        // TODO: reemplazar navegacion segun rol.
+        if (res.user.role === 'admin') {
           this.router.navigate(['/admin/dashboard']);
-        } else if(res.user.role == "receptionist"){
+        } else if (res.user.role === 'receptionist') {
           this.router.navigate(['/receptionist/dashboard']);
         } else {
           this.router.navigate(['/cliente/dashboard']);
         }
-        // Redirige a la sección de cupones (o al home que consideres)
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Error al iniciar sesión';
       }
     });
+  }
+
+  // Nueva función para ir a RegisterComponent
+  onGoToRegister() {
+    // Asumiendo que tu routing para Register es "/auth/register"
+    this.router.navigate(['/auth/register']);
   }
 }

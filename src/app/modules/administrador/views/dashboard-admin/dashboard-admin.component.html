@@ -6,9 +6,9 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Usuarios Registrados</h2>
+          <h2>Usuarios Registrados</h2>
           <!-- Ejemplo: adminData.usersCount, un número que obtendrías de un servicio -->
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h1 class="card-text fs-4" >
             {{ adminData.usersCount || 0 }}
           </h1>
         </div>
@@ -19,8 +19,8 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Cupones Publicados</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h2>Cupones Publicados</h2>
+          <h1 class="card-text fs-4" >
             {{ adminData.couponsCount || 0 }}
           </h1>
         </div>
@@ -31,8 +31,8 @@
     <div class="col-md-4 mb-3">
       <div class="card text-center h-100">
         <div class="card-body d-flex flex-column">
-          <h2 class="card-title">Reportes Disponibles</h2>
-          <h1 class="card-text fs-4" style="font-size: 48px !important; margin-top: 20px !important;  margin-bottom: 20px !important">
+          <h2>Reportes Disponibles</h2>
+          <h1 class="card-text fs-4" >
             {{ adminData.reportsCount || 0 }}
           </h1>
         </div>
@@ -95,38 +95,38 @@
       </div>
     </div>
 
-    <!-- Tarjeta: Reportes -->
-    <div class="col-md-2 mb-3">
+     <!-- Tarjeta: Registrar Compras -->
+     <div class="col-md-2 mb-3">
       <div 
-        class="card h-100 text-center card-link"
-        routerLink="/admin/reports"
+        class="card h-100 text-center card-link" 
+        routerLink="/receptionist/purchase"
       >
         <img
-          src="assets/icons/reports.png"
+          src="assets/icons/sale.png"
           class="card-img-top p-3"
-          alt="Reportes"
+          alt="Registrar Compras"
         />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Reportes</h5>
+          <h5 class="card-title">Registrar Compras</h5>
         </div>
       </div>
     </div>
 
-    <!-- Tarjeta: Perfil Admin (opcional) -->
-    <!-- <div class="col-md-2 mb-3">
+    <!-- Tarjeta: Aplicar Cupón -->
+    <div class="col-md-2 mb-3">
       <div 
-        class="card h-100 text-center card-link"
-        routerLink="/admin/profile"
+        class="card h-100 text-center card-link" 
+        routerLink="/receptionist/coupon-usage"
       >
         <img
-          src="assets/icons/user-profile.png"
+          src="assets/icons/coupon.png"
           class="card-img-top p-3"
-          alt="Perfil Admin"
+          alt="Aplicar Cupón"
         />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Perfil Admin</h5>
+          <h5 class="card-title">Aplicar Cupón</h5>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

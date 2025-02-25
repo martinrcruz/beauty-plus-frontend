@@ -1,70 +1,102 @@
-<div class="container mt-5">
-  <h2>Registro</h2>
-
-  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
-
-  <form>
-    <div class="mb-3">
-      <label for="fullName">Nombre Completo:</label>
-      <input
-        type="text"
-        id="fullName"
-        class="form-control"
-        [(ngModel)]="fullName"
-        name="fullName"
+<!-- container-fluid para ocupar todo el ancho de la pantalla -->
+<div class="container-fluid login-container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="row login-row shadow-lg">
+    <!-- Columna de la imagen (a la izquierda) -->
+    <div class="col-md-6 d-none d-md-block p-0">
+      <img
+        class="login-img img-fluid h-100"
+        src="assets/images/register.jpg"
+        alt="Imagen de Registro"
       />
     </div>
 
-    <div class="mb-3">
-      <label for="dni">DNI:</label>
-      <input
-        type="text"
-        id="dni"
-        class="form-control"
-        [(ngModel)]="dni"
-        name="dni"
+    <!-- Columna del formulario -->
+    <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+      <img 
+        style="height: 175px; width: 175px; margin-bottom: 50px; margin: auto;"
+        src="assets/images/logo.png" 
+        alt="Logo Beauty.plus"
       />
-    </div>
+      <h1 class="text-center text-md-start">Crea tu Cuenta</h1>
+      <h3 class="mb-4 text-center text-md-start">
+        Completa tus datos para registrarte en Beauty.plus
+      </h3>
 
-    <div class="mb-3">
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        class="form-control"
-        [(ngModel)]="email"
-        name="email"
-      />
-    </div>
+      <!-- Mensajes de Error / Éxito -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
 
-    <div class="mb-3">
-      <label for="password">Contraseña:</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        [(ngModel)]="password"
-        name="password"
-      />
-    </div>
+      <form>
+        <div class="mb-3">
+          <label for="fullName" class="form-label fw-bold">Nombre Completo:</label>
+          <input
+            type="text"
+            id="fullName"
+            class="form-control"
+            [(ngModel)]="fullName"
+            name="fullName"
+          />
+        </div>
 
-    <div class="mb-3">
-      <label for="role">Rol:</label>
-      <select
-        id="role"
-        class="form-select"
-        [(ngModel)]="role"
-        name="role"
-      >
-        <option value="client">Cliente</option>
-        <option value="receptionist">Recepcionista</option>
-        <option value="admin">Administrador</option>
-      </select>
-    </div>
+        <div class="mb-3">
+          <label for="dni" class="form-label fw-bold">DNI:</label>
+          <input
+            type="text"
+            id="dni"
+            class="form-control"
+            [(ngModel)]="dni"
+            name="dni"
+          />
+        </div>
 
-    <button type="button" class="btn btn-primary" (click)="onRegister()">
-      Registrar
-    </button>
-  </form>
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Email:</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [(ngModel)]="email"
+            name="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label fw-bold">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+          />
+        </div>
+
+        <!-- Eliminamos la opción de rol, se forzará 'client' en el TS -->
+
+        <button 
+          type="button" 
+          class="btn btn-primary w-100" 
+          (click)="onRegister()"
+        >
+          Registrar
+        </button>
+      </form>
+
+      <!-- Link para volver a Login -->
+      <div class="mt-3 text-center">
+        <span>¿Ya tienes cuenta?</span>
+        <button 
+          type="button" 
+          class="btn btn-link"
+          (click)="goToLogin()"
+        >
+          Inicia sesión aquí
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

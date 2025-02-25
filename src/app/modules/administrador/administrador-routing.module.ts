@@ -6,6 +6,8 @@ import { CouponManagementComponent } from './views/coupon-management/coupon-mana
 import { CouponFormComponent } from './views/coupon-form/coupon-form.component';
 import { UserManagementComponent } from './views/user-management/user-management.component';
 import { DashboardAdminComponent } from './views/dashboard-admin/dashboard-admin.component';
+import { CouponUsageComponent } from './views/coupon-usage/coupon-usage.component';
+import { PurchaseRegistrationComponent } from './views/purchase-registration/purchase-registration.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,9 @@ const routes: Routes = [
       { path: 'coupon-form', component: CouponFormComponent },
       { path: 'coupon-form/:id', component: CouponFormComponent },
       { path: 'users', component: UserManagementComponent },
+      { path: 'coupon-usage', component: CouponUsageComponent },
+      { path: 'purchase', component: PurchaseRegistrationComponent },
+
       // Ruta por defecto -> 'dashboard'
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
